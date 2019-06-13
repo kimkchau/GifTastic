@@ -6,12 +6,9 @@ $(function () {
     // Adding click event listen listener to all buttons
     function displayNatureInfo() {
         $("#gifs-appear-here").empty();
+
         // Grabbing and storing the data-name property value from the button
-
         var nature = $(this).attr("data-name");
-        $("#gifs-appear-here").empty();
-        
-
         console.log(this);
         console.log(nature);
 
@@ -27,7 +24,6 @@ $(function () {
             console.log(queryURL);
             console.log(response);
 
-
             // storing the data from the AJAX request in the results variable
             var results = response.data;
             console.log(results);
@@ -37,7 +33,7 @@ $(function () {
 
                 // Creating and storing a div tag
                 var natureDiv = $("<div>");
-                natureDiv.addClass("col-6");
+                natureDiv.addClass("col-4");
 
                 // Creating a paragraph tag with the result item's rating
                 var p = $("<p>").text("Rating: " + results[i].rating);
@@ -48,10 +44,9 @@ $(function () {
                 natureImage.attr("src", results[i].images.fixed_height_still.url);
                 natureImage.attr("data-still", results[i].images.fixed_height_still.url);
                 natureImage.attr("data-animate", results[i].images.fixed_height.url);
+                console.log("TRAE", results[i].images.fixed_height.url);
                 natureImage.attr("data-state", "still");
-                natureImage.attr("class", "gif");
-                
-
+                natureImage.addClass("gif");
 
                 // Appending the paragraph and image tag to the natureDiv
                 natureDiv.append(p);
@@ -92,9 +87,6 @@ $(function () {
 
     // This function handles events where a button is clicked
     $("#add-nature").on("click", function (event) {
-        
-
-        // ?? WHAT IS THIS FUNCTION ??
         event.preventDefault();
         // This line grabs the input from the textbox
         var natureText = $("#nature-input").val().trim();
@@ -106,7 +98,10 @@ $(function () {
         renderButtons();
     });
 
-    $(".gif").on("click", function () {
+    // This function controlls a gif from still-->animate state.  It's looking at the whole document for still gifs with a class of gif.
+    $(document.body).on("click",".gif", function () {
+        console.log('clicked on a gif');
+
         // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
         var state = $(this).attr("data-state");
         // If the clicked image's state is still, update its src attribute to what its data-animate value is.

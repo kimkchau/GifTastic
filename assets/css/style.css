@@ -3,13 +3,20 @@
 }
 
 .row-last{ 
-    margin-top: 20px;   
+    margin-bottom: 10px;   
 }
 
 button {
       margin: 10px;
-    }
+}
 
-    .jumbotron jumbotron-fluid{
-        background: cadetblue;
-    }
+ .jumbotron {
+     background-image: url(../images/leaves.jpg);
+     /* color: lightgray; */
+     opacity: 0.7;
+ }  
+
+h1{
+    color: lightgray
+}
+  
